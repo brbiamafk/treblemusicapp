@@ -7,7 +7,6 @@ app = Flask(__name__, template_folder=template_folder, static_folder=static_fold
 
 @app.route('/')
 def index():
-    os.path.abspath('../frontend/static')
     return render_template('index.html')
 
 @app.route('/login')
