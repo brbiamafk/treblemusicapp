@@ -31,7 +31,7 @@ def produce():
 
 @app.route('/profile')
 def profile():
-    return render_template('profie.html')
+    return render_template('profile.html')
 
 @app.route('/reset-password')
 def reset_password():
