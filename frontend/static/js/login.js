@@ -8,7 +8,7 @@ function validate()
        && document.getElementById("password").value == "Peepeepoopoo69!")
     {
         alert("Login successful.");
-        location.href="myprofile.html";
+        location.href="profile.html";
     }
     else
     {

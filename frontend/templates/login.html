@@ -4,24 +4,17 @@
 <head>
   <title>Treble - Login</title>
   <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,600">
-  <link href="../styles/styles.css" rel="stylesheet" type="text/css">
+  <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" type="text/css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="../scripts/logincheck.js"></script>
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script>
-    $(function(){
-      $("#header").load("../templates/headerpages.html");
-      $("#footer").load("../templates/footerpages.html");
-    });
-  </script>
+  <script src="{{ url_for('static', filename='js/login.js') }}"></script>
 </head>
 
 <body class="loginback">
-  <div id="header"></div>
+  {% include 'header.html' %}
   <div class="loginbox">
-    <img src="../images/avatar.png" class="avatar">
+    <img src="{{ url_for('static', filename='images/avatar.png') }}" class="avatar">
       <h1 class="loginheader">User Login</h1>
       <form>
         <p>Username</p>
@@ -29,11 +22,11 @@
         <p>Password</p>
         <input id="password" type="password" name="" placeholder="Enter Password">
         <input type="submit" name="" value="Login" onclick="validate()"><br>
-        <a href="passwordreset.html">Lost your password?</a><br>
-        <a href="createaccount.html">Don't have an account?</a>
+        <a href="{{ url_for('reset_password') }}">Lost your password?</a><br>
+        <a href="{{ url_for('signup') }}">Don't have an account?</a>
       </form>
     </div>
-  <div id="footer"></div>
+  {% include 'footer.html' %}
 </body>
 
 </html>
