@@ -11,21 +11,23 @@
   <script src="{{ url_for('static', filename='js/login.js') }}"></script>
 </head>
 
-<body class="loginback">
+<body id="loginback">
   {% include 'header.html' %}
+  <div id="logincontainer">
   <div class="loginbox">
     <img src="{{ url_for('static', filename='images/avatar.png') }}" class="avatar">
-      <h1 class="loginheader">User Login</h1>
+      <h1 id="loginheader">User Login</h1>
       <form>
-        <p>Username</p>
+        <label for="username">Username</label>
         <input id="username" type="text" name="" placeholder="Enter Username">
-        <p>Password</p>
+        <label for="password">Password</label>
         <input id="password" type="password" name="" placeholder="Enter Password">
         <input type="submit" name="" value="Login" onclick="validate()"><br>
         <a href="{{ url_for('reset_password') }}">Lost your password?</a><br>
         <a href="{{ url_for('signup') }}">Don't have an account?</a>
       </form>
     </div>
+  </div>
   {% include 'footer.html' %}
 </body>
 
