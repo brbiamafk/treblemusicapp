@@ -18,21 +18,23 @@
   </script>
 </head>
 
-<body class="loginback">
+<body id="loginback">
   <div id="header"></div>
-  <div class="loginbox">
-    <img src="../images/avatar.png" class="avatar">
-      <h1 class="loginheader">User Login</h1>
+  <div id="logincontainer">
+    <div class="loginbox">
+      <img src="../images/avatar.png" id="avatar">
+      <h1 id="loginheader">User Login</h1>
       <form>
-        <p>Username</p>
+        <label for="username">Username</label>
         <input id="username" type="text" name="" placeholder="Enter Username">
-        <p>Password</p>
+        <label for="password">Password</label>
         <input id="password" type="password" name="" placeholder="Enter Password">
         <input type="submit" name="" value="Login" onclick="validate()"><br>
         <a href="passwordreset.html">Lost your password?</a><br>
         <a href="createaccount.html">Don't have an account?</a>
       </form>
     </div>
+  </div>
   <div id="footer"></div>
 </body>
 
