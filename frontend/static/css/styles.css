@@ -15,11 +15,15 @@ body {
   left: 15px;
 }
 
+/*Header and Footer management*/
+
 #footer,
 #header {
   flex: 0 0 auto;
   margin: 10 auto;
 }
+
+/*Header management*/
 
 #header {
   background: darkgray;
@@ -78,6 +82,8 @@ nav.menu a:hover::before {
   width: 100%
 }
 
+/* Footer Management */
+
 #footer {
   background: #ffd966;
   position:fixed;
@@ -117,10 +123,6 @@ input[type="file"]::file-selector-button:hover {
 
 button:hover {
   cursor: pointer;
-}
-
-.audiospacing {
-  margin-left: 25px;
 }
 
 #loginback {
