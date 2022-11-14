@@ -7,10 +7,9 @@ from flask_sqlalchemy import SQLAlchemy
 static_folder = os.path.abspath('../frontend/static')
 template_folder = os.path.abspath('../frontend/templates')
 app = Flask(__name__, template_folder=template_folder, static_folder=static_folder)
-with app.app_context():
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-    app.config['SECRET_KEY'] = '%C*F-JaNdRgUkXn2r5u8x/A?D(G+KbPe'
-    db = SQLAlchemy(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SECRET_KEY'] = '%C*F-JaNdRgUkXn2r5u8x/A?D(G+KbPe'
+db = SQLAlchemy(app)
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -53,4 +52,5 @@ def reset_password():
 print(__name__)
 
 if __name__ == '__main__':
-    app.run()
+    print('RUN!', __name__)
+    app.run(debug=True, port="8080")
