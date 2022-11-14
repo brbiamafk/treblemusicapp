@@ -3,7 +3,7 @@
 
 <header id="header">
   <div>
-    <a href=index.html><img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" class="logo" width="175" height="60"></a>
+    <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" class="logo" width="175" height="60"></a>
     <nav class="menu">
       <ul>
         <li><a href="{{ url_for('index') }}">Home</a></li>
