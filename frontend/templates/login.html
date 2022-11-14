@@ -15,7 +15,7 @@
   {% include 'header.html' %}
   <div id="logincontainer">
   <div class="loginbox">
-    <img src="{{ url_for('static', filename='images/avatar.png') }}" class="avatar">
+    <img id="avatar" src="{{ url_for('static', filename='images/avatar.png') }}">
       <h1 id="loginheader">User Login</h1>
       <form>
         <label for="username">Username</label>

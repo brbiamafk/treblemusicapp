@@ -8,7 +8,9 @@ body {
 
 .logo {
   float: left;
-  padding-top: 25px 25;
+  position: relative;
+  top: 10px;
+  left: 15px;
 }
 
 #footer,
@@ -22,7 +24,7 @@ body {
   position:fixed;
   left:0px;
   top:0px;
-  height: 50px;
+  height: 80px;
   width:100%;
 }
 
@@ -32,16 +34,18 @@ nav.menu {
 
 nav.menu ul {
   margin: 0;
-  padding: 0;
+  padding-right: 30px;
   padding-top: 10px;
   list-style: none;
 }
 
 nav.menu li {
   display: inline-block;
-  margin-left: 30px;
-  padding-top: 23px;
+  padding-top: 20px;
+  padding-right: 25px;
   position: relative;
+  right: 20px;
+  top: 10px;
 }
 
 nav.menu a {
@@ -96,11 +100,10 @@ nav.menu a:hover::before {
 
 #footer nav li {
   display: inline-block;
-  margin-right: 2px;
-  margin-top: 10px;
-  margin-bottom: 10px;
   position: relative;
-
+  margin-right: 2px;
+  right: 10px;
+  bottom: 5px;
 }
 
 h1 {
