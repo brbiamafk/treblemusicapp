@@ -37,5 +37,7 @@ def profile():
 def reset_password():
     return render_template('reset_password.html')
 
+print(__name__)
+
 if __name__ == '__main__':
     app.run()
