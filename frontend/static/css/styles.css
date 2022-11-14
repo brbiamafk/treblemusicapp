@@ -22,19 +22,6 @@ body {
   flex: 0 0 auto;
 }
 
-#headercontainer {
-  background: grey;
-  padding-bottom: 5px;
-  padding-left: 25px;
-  padding-top: 5px;
-}
-
-#headercontainer::after {
-  content: '';
-  display: table;
-  clear: both;
-}
-
 nav.menu {
   float: right;
 }
@@ -90,20 +77,20 @@ nav.menu a:hover::before {
   width:100%;
 }
 
-#footer.nav {
+#footer nav {
   float: right;
   padding-right: 15px;
 }
 
-#footer.nav ul {
+#footer nav ul {
   list-style: none;
 }
 
-#footer.nav a {
+#footer nav a {
   text-decoration:none;
 }
 
-#footer.nav li {
+#footer nav li {
   display: inline-block;
   margin-right: 2px;
   margin-top: 10px;
