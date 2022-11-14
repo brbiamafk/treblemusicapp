@@ -6,12 +6,6 @@ body {
   font-weight: 400;
 }
 
-.container {
-  width: 90%;
-  margin: 10 auto;
-  flex: 0 0 auto;
-}
-
 .logo {
   float: left;
   padding-top: 25px 25;
@@ -20,6 +14,16 @@ body {
 #footer,
 #header {
   flex: 0 0 auto;
+  margin: 10 auto;
+}
+
+#header {
+  background: darkgray;
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  height: 50px;
+  width:100%;
 }
 
 nav.menu {
