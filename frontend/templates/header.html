@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<header id="header">
+  <div>
+    <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" class="logo" width="175" height="60"></a>
+    <nav class="menu">
+      <ul>
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('collaborate') }}">Collaborate</a></li>
+        <li><a href="{{ url_for('produce') }}">Produce</a></li>
+        <li><a href="{{ url_for('share') }}">Share</a></li>
+        <li><a href="{{ url_for('profile') }}">My Profile</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+</html>

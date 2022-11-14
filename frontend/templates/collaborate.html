@@ -4,26 +4,19 @@
 <head>
   <title>Treble - Collaborate</title>
   <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,600">
-  <link href="../styles/styles.css" rel="stylesheet" type="text/css">
+  <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" type="text/css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script>
-    $(function(){
-      $("#header").load("../templates/headerpages.html");
-      $("#footer").load("../templates/footerpages.html");
-    });
-  </script>
 </head>
  
 <body>
-  <div id="header"></div>
+  {% include 'header.html' %}
   <h1><strong>Collaborate</strong></h1>
   <h4>The collaborate feature allows musicians to collaboratively write songs, providing feedback and ideas to one another.</h4>
   <input class="uploadbutton" id="fileupload" type="file" name="fileupload" />
   <button id="upload-button" onclick="saveFile()">Upload</button>
-  <div id="footer"></div>
+  {% include 'footer.html' %}
 </body>
 
 </html>
