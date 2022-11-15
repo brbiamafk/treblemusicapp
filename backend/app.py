@@ -53,19 +53,19 @@ class RegisterForm(FlaskForm):
         existing_user_username = User.query.filter_by(
             username=username.data).first()
         if existing_user_username:
-            raise app.ValidationError(
+            raise ValidationError(
                 'That username already exists. Please choose a different one.')
 
-    def validate_password(password):
+    def validate_password(self, password):
         password = input(password)
         if len(password) < 8:
-            raise app.ValidationError(
+            raise ValidationError(
                 'Make sure your password is at least 8 letters.')
         elif not password.isdigit():
-            raise app.ValidationError(
+            raise ValidationError(
                 'Make sure your password has a number in it.')
         elif not password.isupper(): 
-            raise app.ValidationError(
+            raise ValidationError(
                 'Make sure your password has a capital letter in it.')
 
 
