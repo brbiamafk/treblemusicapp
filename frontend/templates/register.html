@@ -13,12 +13,16 @@
 
 <body id="loginback">
   {% include 'header.html' %}
-  <div id="loginbox">
+  <div id="registerbox">
+    <img src="{{ url_for('static', filename='images/avatar.png') }}" id="avatar">
     <h1><strong>Register</strong></h1>
     <form method="POST" action="">
       {{ form.hidden_tag() }}
       {{ form.username }}
+      {{ form.email }}
       {{ form.password }}
+      {{ form.confirm_password }}
+      {{ form.accept_tos }}
       {{ form.submit }}
     </form>
     <a href="{{ url_for('login') }}">Already have an account? Log in.</a>

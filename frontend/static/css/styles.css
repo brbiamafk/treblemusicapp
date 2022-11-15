@@ -129,7 +129,15 @@ button:hover {
   cursor: pointer;
 }
 
-/* Login page styles*/
+/* Login and register pages styles*/
+
+#avatar {
+  width: 30%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 0;
+}
 
 #loginback {
   background-image: url(../images/site_background.png);
@@ -140,6 +148,8 @@ button:hover {
   left: 0;
   background-size: cover;
 }
+
+/* Login box styles */
 
 #loginbox {
   width: 320px;
@@ -153,14 +163,6 @@ button:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-#avatar {
-  width: 30%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  left: 50%;
-  top: 0;
 }
 
 #loginbox h1 {
@@ -222,3 +224,78 @@ button:hover {
 #loginbox a:hover {
   color: #ffc107;
 }
+
+/* Register box styles */
+
+#registerbox {
+  width: 320px;
+  height: 420px;
+  background: #000;
+  color: white;
+  align-items:center;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#registerbox h1 {
+  margin-top: 80px;
+  margin-left: 0;
+}
+
+#registerbox form {
+  padding: 28px;
+  padding-top: 0;
+}
+
+#registerbox label {
+  font-weight: bold;
+  margin: 0;
+}
+
+#registerbox input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#registerbox input[type="text"], input[type="password"] {
+  border: none;
+  border-bottom: 1px solid grey;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  width: 262px;
+  color: #fff;
+  font: 16px;
+}
+#registerbox input[type="submit"] {
+  border: none;
+  outline: none;
+  position: relative;
+  background: white;
+  color: black;
+  font-size: 18px;
+  border-radius: 20px;
+  height: 2rem;
+}
+
+#registerbox input[type="submit"]:hover {
+  cursor:pointer;
+  background: #ffc107;
+  color: #000;
+}
+
+#registerbox a {
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 20px;
+  position: relative;
+  bottom: 10px;
+  color: darkgrey;
+}
+
+#registerbox a:hover {
+  color: #ffc107;

@@ -3,8 +3,8 @@ from flask import Flask, render_template, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import InputRequired, Length, ValidationError
+from wtforms import Form, BooleanField, StringField, PasswordField, SubmitField, validators
+from wtforms.validators import InputRequired, Length 
 from flask_bcrypt import Bcrypt
 
 static_folder = os.path.abspath('../frontend/static')
@@ -38,11 +38,13 @@ class User(db.Model, UserMixin):
 
 class RegisterForm(FlaskForm):
     username = StringField(validators=[
-                           InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
-
+        InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
+    email = StringField(validators=[
+        InputRequired(), Length(min=6, max=30)], render_kw={"placeholder": "Email"})
     password = PasswordField(validators=[
-                             InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
-
+        InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
+    confirm_password = PasswordField('Confirm password')
+    accept_tos = BooleanField('I accept the TOS', [validators.DataRequired()])
     submit = SubmitField('Register')
 
     def validate_username(self, username):
@@ -52,13 +54,24 @@ class RegisterForm(FlaskForm):
             raise ValidationError(
                 'That username already exists. Please choose a different one.')
 
+    def validate_password(self, password):
+        if len(password) < 8:
+            raise ValidationError(
+                'Make sure your password is at lest 8 letters.')
+        elif not password.isdigit():
+            raise ValidationError(
+                'Make sure your password has a number in it.')
+        elif not password.isupper(): 
+            raise ValidationError(
+                'Make sure your password has a capital letter in it.')
+
 
 class LoginForm(FlaskForm):
     username = StringField(validators=[
-                           InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
+        InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
 
     password = PasswordField(validators=[
-                             InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
+        InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
 
     submit = SubmitField('Login')
 
@@ -91,6 +104,7 @@ def register():
         hashed_password = bcrypt.generate_password_hash(form.password.data)
         new_user = User(username=form.username.data, password=hashed_password)
         db.session.add(new_user)
+        flash('Welcome to the Treble Community!')
         db.session.commit()
         return redirect(url_for('login'))
 
