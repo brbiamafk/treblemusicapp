@@ -1,6 +1,6 @@
 backend/venv
 backend/.env
-__pycache__/
+backend/__pycache__
 .DS_Store
 backend/instance
 backend/instance/database.db
