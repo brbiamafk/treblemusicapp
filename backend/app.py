@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
 from wtforms import Form, BooleanField, StringField, PasswordField, SubmitField, validators
-from wtforms.validators import InputRequired, Length 
+from wtforms.validators import InputRequired, Length, DataRequired, EqualTo
 from flask_bcrypt import Bcrypt
 
 static_folder = os.path.abspath('../frontend/static')
@@ -31,38 +31,41 @@ def load_user(user_id):
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False, unique=True)
+    email = db.Column(db.String(30), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
 
     def __repr__(self):
         return f'<User {self.username}>'
 
 class RegisterForm(FlaskForm):
-    username = StringField(validators=[
-        InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
-    email = StringField(validators=[
-        InputRequired(), Length(min=6, max=30)], render_kw={"placeholder": "Email"})
-    password = PasswordField(validators=[
-        InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
-    confirm_password = PasswordField('Confirm password')
-    accept_tos = BooleanField('I accept the TOS', [validators.DataRequired()])
+    username = StringField(label='username', validators=[
+        validators.InputRequired(), validators.Length(min=4, max=20)], render_kw={"placeholder": "Username"})
+    email = StringField(label='email', validators=[
+        validators.InputRequired(), validators.Length(min=6, max=30)], render_kw={"placeholder": "Email"})
+    password = PasswordField(label='password', validators=[
+        validators.InputRequired(), validators.EqualTo('confirm_password'), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
+    confirm_password = PasswordField(label='confirm_password', validators=[
+        validators.InputRequired(), validators.Length(min=8, max=20)], render_kw={"placeholder": "Confirm Password"})
+    accept_tos = BooleanField('I have read and accept the Treble terms of service.', [validators.DataRequired()])
     submit = SubmitField('Register')
 
     def validate_username(self, username):
         existing_user_username = User.query.filter_by(
             username=username.data).first()
         if existing_user_username:
-            raise ValidationError(
+            raise app.ValidationError(
                 'That username already exists. Please choose a different one.')
 
-    def validate_password(self, password):
+    def validate_password(password):
+        password = input(password)
         if len(password) < 8:
-            raise ValidationError(
-                'Make sure your password is at lest 8 letters.')
+            raise app.ValidationError(
+                'Make sure your password is at least 8 letters.')
         elif not password.isdigit():
-            raise ValidationError(
+            raise app.ValidationError(
                 'Make sure your password has a number in it.')
         elif not password.isupper(): 
-            raise ValidationError(
+            raise app.ValidationError(
                 'Make sure your password has a capital letter in it.')
 
 

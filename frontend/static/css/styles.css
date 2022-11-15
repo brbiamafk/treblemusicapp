@@ -160,7 +160,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -229,14 +229,14 @@ button:hover {
 
 #registerbox {
   width: 320px;
-  height: 420px;
+  height: 530px;
   background: #000;
   color: white;
   align-items:center;
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -271,6 +271,7 @@ button:hover {
   color: #fff;
   font: 16px;
 }
+
 #registerbox input[type="submit"] {
   border: none;
   outline: none;
@@ -293,7 +294,7 @@ button:hover {
   font-size: 12px;
   line-height: 20px;
   position: relative;
-  bottom: 10px;
+  bottom: 20px;
   color: darkgrey;
 }
 
