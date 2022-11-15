@@ -6,6 +6,7 @@ from flask_wtf import FlaskForm
 from wtforms import Form, BooleanField, StringField, PasswordField, SubmitField, validators
 from wtforms.validators import InputRequired, Length, DataRequired, EqualTo
 from flask_bcrypt import Bcrypt
+from flask_mail import Mail
 
 static_folder = os.path.abspath('../frontend/static')
 template_folder = os.path.abspath('../frontend/templates')
@@ -20,6 +21,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 app.app_context().push()
+app.config['MAIL_SERVER'] = 'trablemusicapp.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USERNAME'] = "treble_passwordreset@gmail.com"
+app.config['MAIL_PASSWORD'] = "password"
+mail = Mail(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -78,6 +85,12 @@ class LoginForm(FlaskForm):
 
     submit = SubmitField('Login')
 
+class ResetPasswordForm(FlaskForm):
+    email = StringField(label='email', validators=[
+        validators.InputRequired(), validators.Length(min=6, max=30)], render_kw={"placeholder": "Email"})
+    
+    submit = SubmitField('Reset Password')   
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -130,8 +143,13 @@ def profile():
     return render_template('profile.html')
 
 @app.route('/reset-password')
-def reset_password():
-    return render_template('reset_password.html')
+def resetpassword():
+    form = ResetPasswordForm()
+
+    if form.validate_on_submit():
+        return redirect(url_for('reset-password'))
+
+    return render_template('reset_password.html', form=form)
 
 print(__name__)
 

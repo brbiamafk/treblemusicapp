@@ -9,4 +9,4 @@ From the project directory, do:
 5. `pip3 install -r requirements.txt` to install python dependencies
 6. `python3 app.py` to start the server
 
-* If a new package is installed with pip, remember to `pip freeze > requirements.txt`
+* If a new package is installed with pip, remember to `pip3 freeze > requirements.txt`
