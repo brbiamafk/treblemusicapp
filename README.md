@@ -7,7 +7,6 @@ From the project directory, do:
 4. `source venv/bin/activate` to activate the virtual environment
 5. `python3 -m pip install --upgrade pip` to update pip
 5. `pip3 install -r requirements.txt` to install python dependencies
-6. `export FLASK_ENV=development` to configure flask to use development mode with hot reloading
 6. `python3 app.py` to start the server
 
 * If a new package is installed with pip, remember to `pip freeze > requirements.txt`
