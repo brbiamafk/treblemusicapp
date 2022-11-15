@@ -10,8 +10,13 @@ from flask_bcrypt import Bcrypt
 static_folder = os.path.abspath('../frontend/static')
 template_folder = os.path.abspath('../frontend/templates')
 app = Flask(__name__, template_folder=template_folder, static_folder=static_folder)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+basedir = os.path.abspath(os.path.dirname(__file__))
+print('basedir', basedir)
+app.config['SQLALCHEMY_DATABASE_URI'] =\
+        'sqlite:///' + os.path.join(basedir, 'database.db')
 app.config['SECRET_KEY'] = '%C*F-JaNdRgUkXn2r5u8x/A?D(G+KbPe'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 app.app_context().push()
@@ -27,6 +32,9 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
+
+    def __repr__(self):
+        return f'<User {self.username}>'
 
 class RegisterForm(FlaskForm):
     username = StringField(validators=[
