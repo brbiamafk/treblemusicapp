@@ -16,15 +16,21 @@
   <div id="loginbox">
     <img src="{{ url_for('static', filename='images/avatar.png') }}" id="avatar">
     <h1 id="loginheader">User Login</h1>
-    <form>
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
+      {{ form.username }}
+      {{ form.password }}
+      {{ form.submit }}
+    </form>
+    <a href="{{ url_for('reset_password') }}">Lost your password?</a><br>
+    <a href="{{ url_for('register') }}">Don't have an account?</a>
+    <!-- <form>
       <label for="username">Username</label>
       <input id="username" type="text" name="" placeholder="Enter Username">
       <label for="password">Password</label>
       <input id="password" type="password" name="" placeholder="Enter Password">
       <input type="submit" name="" value="Login" onclick="validate()"><br>
-      <a href="{{ url_for('reset_password') }}">Lost your password?</a><br>
-      <a href="{{ url_for('signup') }}">Don't have an account?</a>
-    </form>
+    </form> -->
   </div>
   {% include 'footer.html' %}
 </body>
