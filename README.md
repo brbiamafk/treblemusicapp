@@ -6,20 +6,29 @@ From the project directory, do:
 3. `python3 -m venv venv` to create the virtual environment in backend/venv
 4. `source venv/bin/activate` to activate the virtual environment
 5. `python3 -m pip install --upgrade pip` to update pip
-5. `pip3 install -r requirements.txt` to install python dependencies
-6. `python3 app.py` to start the server
+6. `pip3 install -r requirements.txt` to install python dependencies
+7. `python3` to start python
+8. `from app import db, User` to set import db into app
+9. `db.create_all()` to start up db schema
+10. `python3 app.py` to start the server
 
 * If a new package is installed with pip, remember to `pip3 freeze > requirements.txt`
 
 Open To Dos:
 
+- Convert togglemenu to separate script
+- Only show #profilepicheader if logged in
+- Only show Login if not logged in
+- Add db to store user preferences and info (including profile pic etc.)
+- Update profile pic header to reference user settings once logged in
+- Update profile page to show user settings when logged in
+- Remove stuck cliker icon from My Profile page
 - Accept TOS checkbox on register page not display text
 - Validate email (low priority)
 - Figure out way to show validation errors on register and login
     - Form submission causes a page redirect which makes flash('message') not work as intended I believe
 - Configure flask_mail to send emails for new user registration and password reset
 - Add favicon so logo shows in brower URL window
-- Add db to store user preferences and info (including profile pic etc.)
 - Create social media accounts and update links
 - Set up file uploads to server
 - Link file uploads to upload buttons
@@ -30,5 +39,5 @@ Open To Dos:
     - Top 10 files by <attribute> which can be metadata associated with files
 - Set up comments on shared files
 - Set up friend requests and lists
-- Set up direct messages and sharing (attachements)
+- Set up direct messages and sharing (attachement)
 - Profit

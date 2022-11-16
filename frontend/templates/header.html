@@ -3,7 +3,7 @@
 
 <header id="header">
   <div>
-    <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" class="logo" width="175" height="60"></a>
+    <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" id="headerlogo" width="175" height="60"></a>
     <nav class="menu">
       <ul>
         <li><a href="{{ url_for('index') }}">Home</a></li>
@@ -12,9 +12,43 @@
         <li><a href="{{ url_for('share') }}">Share</a></li>
         <li><a href="{{ url_for('profile') }}">My Profile</a></li>
         <li><a href="{{ url_for('login') }}">Login</a></li>
+        <img src="{{ url_for('static', filename='images/profilepic.jpeg') }}" alt="profilepic" id="profilepicheader" width="40" height="40" onclick="toggleMenu()">
       </ul>
-    </nav>
+        <div class="sub-menu-wrap" id="subMenu">
+          <div class="sub-menu">
+            <div class="user-info"> 
+              <img src="{{ url_for('static', filename='images/profilepic.jpeg') }}" alt="profilepic">
+              <h1> Brett Gillis</h1>
+            </div>
+            <hr>
+            <a href="{{ url_for('profile') }}" class="sub-menu-link">
+              <img src="{{ url_for('static', filename='images/profile_icon.png') }}" alt="profile_icon">
+              <p>Edit Profile</p>
+            </a>
+            <a href="{{ url_for('settings') }}" class="sub-menu-link">
+              <img src="{{ url_for('static', filename='images/settings_icon.png') }}" alt="settings_icon">
+              <p>Settings</p>
+            </a>
+            <a href="{{ url_for('help') }}" class="sub-menu-link">
+              <img src="{{ url_for('static', filename='images/help_icon.png') }}" alt="help_icon">
+              <p>Help & Support</p>
+            </a>
+            <a href="{{ url_for('logout') }}" class="sub-menu-link">
+              <img src="{{ url_for('static', filename='images/logout_icon.png') }}" alt="logout_icon">
+              <p>Logout</p>
+            </a>
+          </div>
+        </div>
+    </nav>      
   </div>
 </header>
+
+<script>
+  let subMenu = document.getElementById("subMenu");
+
+function toggleMenu(){
+    subMenu.classList.toggle("open-menu");
+    } 
+</script>
 
 </html>

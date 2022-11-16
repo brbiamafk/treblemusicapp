@@ -151,6 +151,14 @@ def produce():
 def profile():
     return render_template('profile.html')
 
+@app.route('/settings')
+def settings():
+    return render_template('settings.html')
+
+@app.route('/help')
+def help():
+    return render_template('help.html')
+
 @app.route('/reset-password')
 def resetpassword():
     form = ResetPasswordForm()
