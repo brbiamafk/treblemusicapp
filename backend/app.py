@@ -1,10 +1,10 @@
 import os
-from flask import Flask, render_template, url_for, redirect, send_from_directory
+from flask import Flask, render_template, url_for, redirect, send_from_directory, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
 from wtforms import Form, BooleanField, StringField, PasswordField, SubmitField, validators
-from wtforms.validators import InputRequired, Length, DataRequired, EqualTo
+from wtforms.validators import InputRequired, Length, DataRequired, EqualTo, ValidationError
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
 
@@ -13,7 +13,6 @@ template_folder = os.path.abspath('../frontend/templates')
 app = Flask(__name__, template_folder=template_folder, static_folder=static_folder)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 basedir = os.path.abspath(os.path.dirname(__file__))
-print('basedir', basedir)
 app.config['SQLALCHEMY_DATABASE_URI'] =\
         'sqlite:///' + os.path.join(basedir, 'database.db')
 app.config['SECRET_KEY'] = '%C*F-JaNdRgUkXn2r5u8x/A?D(G+KbPe'
@@ -57,25 +56,30 @@ class RegisterForm(FlaskForm):
     submit = SubmitField('Register')
 
     def validate_username(self, username):
-        existing_user_username = User.query.filter_by(
-            username=username.data).first()
+        username = username.data
+        existing_user_username = User.query.filter_by(username=username).first()
         if existing_user_username:
-            raise ValidationError(
-                'That username already exists. Please choose a different one.')
+            error = 'That username already exists. Please choose a different one.'
+            raise ValidationError(error)
 
 
     def validate_password(self, password):
-        password = input(password)
+        password = password.data
         if len(password) < 8:
-            raise ValidationError(
-                'Make sure your password is at least 8 letters.')
-        elif not password.isdigit():
-            raise ValidationError(
-                'Make sure your password has a number in it.')
-        elif not password.isupper(): 
-            raise ValidationError(
-                'Make sure your password has a capital letter in it.')
+            error = 'Make sure your password is at least 8 letters.'
+            raise ValidationError(error)
+        # I hate password rules like these haha
+        # elif not password.isdigit():
+        #     error = 'Make sure your password has a number in it.'
+        #     raise ValidationError(error)
+        # elif not password.isupper(): 
+        #     error = 'Make sure your password has a capital letter in it.'
+        #     raise ValidationError(error)
 
+    def validate_email(self, email):
+        #TODO use library to validate email string
+        # email = email.data
+        pass
 
 class LoginForm(FlaskForm):
     username = StringField(validators=[
@@ -123,7 +127,7 @@ def register():
 
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data)
-        new_user = User(username=form.username.data, password=hashed_password)
+        new_user = User(username=form.username.data, password=hashed_password, email = form.email.data)
         db.session.add(new_user)
         flash('Welcome to the Treble Community!')
         db.session.commit()

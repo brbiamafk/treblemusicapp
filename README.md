@@ -13,8 +13,10 @@ From the project directory, do:
 
 Open To Dos:
 
-- Fix password validation (new user submit getting hung)
-- Find out why users aren't submitting (maybe related to validations)
+- Accept TOS checkbox on register page not display text
+- Validate email (low priority)
+- Figure out way to show validation errors on register and login
+    - Form submission causes a page redirect which makes flash('message') not work as intended I believe
 - Configure flask_mail to send emails for new user registration and password reset
 - Add favicon so logo shows in brower URL window
 - Add db to store user preferences and info (including profile pic etc.)
