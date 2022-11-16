@@ -10,3 +10,23 @@ From the project directory, do:
 6. `python3 app.py` to start the server
 
 * If a new package is installed with pip, remember to `pip3 freeze > requirements.txt`
+
+Open To Dos:
+
+- Fix password validation (new user submit getting hung)
+- Find out why users aren't submitting (maybe related to validations)
+- Configure flask_mail to send emails for new user registration and password reset
+- Add favicon so logo shows in brower URL window
+- Add db to store user preferences and info (including profile pic etc.)
+- Create social media accounts and update links
+- Set up file uploads to server
+- Link file uploads to upload buttons
+- Design page layouts and css (near final)
+- Set up initial voting and like system
+- Configure way to show:
+    - User uploaded files (in profile, and selector for sharing)
+    - Top 10 files by <attribute> which can be metadata associated with files
+- Set up comments on shared files
+- Set up friend requests and lists
+- Set up direct messages and sharing (attachements)
+- Profit

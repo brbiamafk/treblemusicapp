@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, url_for, redirect, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
@@ -51,7 +51,7 @@ class RegisterForm(FlaskForm):
         validators.InputRequired(), validators.Length(min=6, max=30)], render_kw={"placeholder": "Email"})
     password = PasswordField(label='password', validators=[
         validators.InputRequired(), validators.EqualTo('confirm_password'), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
-    confirm_password = PasswordField(label='confirm_password', validators=[
+    confirm_password = PasswordField(validators=[
         validators.InputRequired(), validators.Length(min=8, max=20)], render_kw={"placeholder": "Confirm Password"})
     accept_tos = BooleanField('I have read and accept the Treble terms of service.', [validators.DataRequired()])
     submit = SubmitField('Register')
@@ -62,6 +62,7 @@ class RegisterForm(FlaskForm):
         if existing_user_username:
             raise ValidationError(
                 'That username already exists. Please choose a different one.')
+
 
     def validate_password(self, password):
         password = input(password)
@@ -90,6 +91,10 @@ class ResetPasswordForm(FlaskForm):
         validators.InputRequired(), validators.Length(min=6, max=30)], render_kw={"placeholder": "Email"})
     
     submit = SubmitField('Reset Password')   
+
+@app.route('/logo_icon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),'logo_icon.ico',mimetype='image/vnd.microsoft.icon')
 
 @app.route('/')
 def index():
@@ -145,10 +150,6 @@ def profile():
 @app.route('/reset-password')
 def resetpassword():
     form = ResetPasswordForm()
-
-    if form.validate_on_submit():
-        return redirect(url_for('reset-password'))
-
     return render_template('reset_password.html', form=form)
 
 print(__name__)
