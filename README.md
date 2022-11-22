@@ -19,6 +19,24 @@ Open To Dos:
 - Convert togglemenu to separate script
 - Only show #profilepicheader if logged in
 - Only show Login if not logged in
+- Create tables and drop-downs for user preferences:
+ - Songwriter:
+  - Genre preferences
+  - Years of experience
+  - Portfolio/links
+ - Musician:
+  - Instruments played
+  - Years of experience
+  - Porfolio/links
+- Lyricist:
+  - Genre preferences
+  - Portfolio/links
+ - Producer:
+  - Genre preferences
+  - Years of experience
+  - Portfilio/links
+ - Listener:
+  - Genre preferences
 - Add db to store user preferences and info (including profile pic etc.)
 - Update profile pic header to reference user settings once logged in
 - Update profile page to show user settings when logged in

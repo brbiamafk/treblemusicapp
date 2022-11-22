@@ -40,6 +40,10 @@ body {
   width:100%;
 }
 
+#home nav {
+  float: left;
+}
+
 nav.menu {
   float: right;
 }
