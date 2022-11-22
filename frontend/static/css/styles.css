@@ -6,10 +6,9 @@ body {
   font-family: sans-serif;
   font-family: 'Work Sans', sans-sans-serif;
   font-weight: 400;
-  height: 3000px;
-  min-width: 1175px;
-  min-height: 3000px;
-  overflow: scroll;
+  min-width: 950px;
+  min-height: 700px;
+  overflow: auto;
 }
 
 #headerlogo {
@@ -25,6 +24,9 @@ body {
 #header {
   flex: 0 0 auto;
   margin: 10 auto;
+  min-width: 950px;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 /*Header styles*/
