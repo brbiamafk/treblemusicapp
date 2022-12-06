@@ -11,17 +11,22 @@
   <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
 </head>
 
-<body>
+<body id="loginback">
   {% include 'header.html' %}
-  <h1><strong>Register</strong></h1>
-  <form>
-    <p>Username</p>
-    <input id="username" type="text" name="" placeholder="Enter Username">
-    <p>Password</p>
-    <input id="password" type="password" name="" placeholder="Enter Password">
-    <input type="submit" name="" value="Login" onclick="signup()"><br>
+  <div id="registerbox">
+    <img src="{{ url_for('static', filename='images/avatar.png') }}" id="avatar">
+    <h1><strong>Register</strong></h1>
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
+      {{ form.username }}
+      {{ form.email }}
+      {{ form.password }}
+      {{ form.confirm_password }}
+      {{ form.accept_tos }}
+      {{ form.submit }}
+    </form>
     <a href="{{ url_for('login') }}">Already have an account? Log in.</a>
-  </form>
+  </div>
 
   {% include 'footer.html' %}
 </body>
